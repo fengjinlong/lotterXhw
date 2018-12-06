@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,14 +8,94 @@
   <link rel="stylesheet" href="animate.css">
   <title>Document</title>
   <style>
-    div{
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+    .div2{
+      /* width: 500px; */
+      height: 200px;
+      background: red;
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+    }
+    .div2 a {
       width: 100px;
       height: 100px;
-      border: 1px solid red
+      background: orange;
+      border-radius: 100px;
+      text-align: center;
+      line-height: 100px;
+      font-size: 40px;
     }
+
   </style>
 </head>
+
 <body>
-  <div class="animated bounceOutLeft infinite"></div>
+
+  <div class="div2">
+    <a class="aa" href="">1</a>
+    <a class="aa"href="">2</a>
+    <a class="aa"href="">3</a>
+    <a class="aa"href="">4</a>
+    <a class="aa"href="">5</a>
+    <a class="aa"href="">6</a>
+    <a class="aa"href="">7</a>
+  </div>
+  <button class="begin">begin</button>
+  <button class="stop">stop</button>
+  <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script>
+    var once = (function () {
+      var obj = 1
+      var arr = []
+      return function () {
+        if (arguments.length == 1) {
+          obj = 1
+          arr = []
+          console.log('back')
+        } else {
+          if (obj === 1) {
+            obj = 2
+            console.log('go')
+            while (arr.length < 7) {
+              arr.push(Math.floor(Math.random() * 500))
+            }
+            // 渲染图片
+            randerfun(arr)
+          }
+        }
+      }
+    })()
+    function randerfun (arr) {
+      arr.forEach(function (element,i) {
+        $($('.aa')[i]).text(element)
+      });
+      once(1)
+    }
+    $('.begin').click(function () {
+      $('.aa').addClass('animated bounceOutLeft infinite faster delay-1s')
+      changeImg()
+    })
+    $('.stop').click(function () {
+      $('.aa').removeClass('animated bounceOutLeft infinite faster delay-1s')
+      stopImg()
+    })
+    var timer;
+    function changeImg () {
+      timer = setInterval(function () {
+        var n = Math.floor(Math.random() * 3)
+        once()
+      },300)
+    }
+    function stopImg () {
+      clearInterval(timer)
+    }
+    
+  </script>
 </body>
+
 </html>

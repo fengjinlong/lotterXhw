@@ -1246,7 +1246,7 @@
   20% {
     opacity: 1;
     -webkit-transform: translate3d(20px, 0, 0);
-    transform: translate3d(120px, 0, 0);
+    transform: translate3d(20px, 0, 0);
   }
 
   to {
@@ -1260,7 +1260,7 @@
   20% {
     opacity: 1;
     -webkit-transform: translate3d(20px, 0, 0);
-    transform: translate3d(120px, 0, 0);
+    transform: translate3d(20px, 0, 0);
   }
 
   to {
@@ -3569,8 +3569,8 @@
 }
 
 .animated.delay-1s {
-  -webkit-animation-delay: 1s;
-  animation-delay: 1s;
+  -webkit-animation-delay: 0.5s;
+  animation-delay: 0.5s;
 }
 
 .animated.delay-2s {
@@ -3599,8 +3599,8 @@
 }
 
 .animated.faster {
-  -webkit-animation-duration: 500ms;
-  animation-duration: 500ms;
+  -webkit-animation-duration: 100ms;
+  animation-duration: 100ms;
 }
 
 .animated.slow {
