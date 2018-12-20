@@ -5,7 +5,6 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="animate.css">
   <title>中和教育2018年终抽奖</title>
   <style>
     * {
@@ -29,6 +28,11 @@
       border: 1px solid transparent;
     }
 
+    .con {
+      width: 100%;
+
+    }
+
     .content {
       width: 100%;
       height: 500px;
@@ -37,19 +41,35 @@
       background-size: 100% 100%;
       border: 1px solid transparent;
       position: relative;
-      /* display: flex; */
+      overflow: hidden;
+    }
+
+    .content .yellow {
+      position: absolute;
+      width: 100%;
+      height: 200px;
+      top: 125px;
+      z-index: 666
+    }
+
+    .content .yellow .div {
+      width: 150px;
+      height: 150px;
+      border: 6px solid yellow;
+      border-radius: 150px;
+      margin: 0 auto;
     }
 
     .content ul {
-      width: 100%;
-      display: flex;
-      justify-content: space-evenly;
-
+      width: 200000px;
+      position: relative;
+      overflow: hidden;
     }
 
     .content ul li {
-      width: 150px;
+      /* width: 288px; */
       height: 200px;
+      float: left;
       margin-top: 130px;
       /* background: red */
     }
@@ -58,11 +78,13 @@
       display: block;
       width: 140px;
       height: 140px;
-      border-radius:140px;
-      padding:8px; 
+      border-radius: 140px;
+      padding: 8px;
+      margin: 0 auto;
     }
+
     .content ul li p {
-      padding:5px 10px;
+      padding: 5px 10px;
       font-size: 20px;
       color: #fff;
       text-align: center;
@@ -73,6 +95,7 @@
 
     .content button {
       display: block;
+      outline: none;
       margin: 10px auto 0;
       width: 180px;
       height: 200px;
@@ -80,102 +103,70 @@
       background: transparent;
       background: url('./images/btn_nor_begin.png') no-repeat;
       background-size: 100% 100%;
-      cursor:pointer;
+      cursor: pointer;
     }
+
     .content button.stopBtn {
       display: none;
       background: url('./images/btn_nor_stop.png') no-repeat;
       background-size: 100% 100%;
     }
-    .content .lucky {
-      background: yellow;
-      padding: 10px;
-      width: 240px;
-      height:240px;
-      border-radius: 240px;
-      position: absolute;
-      left: 50%;
-      top:40px;
-      margin-left:-120px; 
-      display: none;
-    }
-    .content .lucky img{
-      display:block;
-      width: 220px;
-      height: 220px;
-      border-radius: 220px;
-    }
-    .content .lucky p{
-      position: absolute;
-      z-index: 111;
-      width: 100%;
-      text-align: center;
-      color: #fff;
-      font-size: 26px;
-      bottom: -50px;
-      
-    }
-
   </style>
 </head>
 
 <body>
   <div class="bg">
-    <div class="content">
-      <div class="lucky">
-        <img src="./2.jpeg" alt="">
-        <p>中奖了</p>
+    <div class="con">
+      <div id="content" class="content">
+        <div class="yellow">
+          <div class="div"></div>
+        </div>
+        <ul>
+          <li class="">
+            <img src="./images/bg_pic.png" alt="">
+            <p>name</p>
+          </li>
+          <li class="">
+            <img src="./images/bg_pic.png" alt="">
+            <p>名字名字sa</p>
+          </li>
+          <li class="">
+            <img src="./images/bg_pic.png" alt="">
+            <p>name</p>
+          </li>
+          <li class="">
+            <img src="./images/bg_pic.png" alt="">
+            <p>名字名字sa名字名字sa名字名字sa</p>
+          </li>
+          <li class="">
+            <img src="./images/bg_pic.png" alt="">
+            <p>name</p>
+          </li>
+        </ul>
+        <button class="beginBtn"></button>
+        <button class="stopBtn"></button>
       </div>
-      <ul>
-        <li class="">
-          <img src="./images/bg_pic.png" alt="">
-          <p>名字名字sa</p>
-        </li>
-        <li class="">
-          <img src="./images/bg_pic.png" alt="">
-          <p>名字名字sa</p>
-        </li>
-        <li class="">
-          <img src="./images/bg_pic.png" alt="">
-          <p>name</p>
-        </li>
-        <li class="center">
-          <img src="./images/bg_pic.png" alt="">
-          <p>名字名字sa</p>
-        </li>
-        <li class="">
-          <img src="./images/bg_pic.png" alt="">
-          <p>name</p>
-        </li>
-        <li class="">
-          <img src="./images/bg_pic.png" alt="">
-          <p>名字名字sa名字名字sa名字名字sa</p>
-        </li>
-        <li class="">
-          <img src="./images/bg_pic.png" alt="">
-          <p>name</p>
-        </li>
-      </ul>
-      <button class="beginBtn"></button>
-      <button class="stopBtn"></button>
     </div>
   </div>
   <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+  <script src="lottery.js"></script>
   <script>
     $('.beginBtn').click(function () {
-      $('.content ul li').addClass('animated bounceOutLeft infinite faster delay-1s')
+      Lottery.start()
       $(this).hide()
-      $('.stopBtn').show().css({display: 'block'})
+      $('.stopBtn').show().css({
+        display: 'block'
+      })
     })
+
     $('.stopBtn').click(function () {
-      $('.content ul li').removeClass('animated bounceOutLeft infinite faster delay-1s');
-      $('.center img').hide()
-      $('.center p').hide()
-      $('.content .lucky').show()
-      setTimeout(function () {
-        location.href='result.html'; 
-      },1000)
+      Lottery.stop()
     })
+    
+    //   setTimeout(function () {
+    //     // location.href='result.html'; 
+    //   },1000)
+    // })
   </script>
 </body>
 
