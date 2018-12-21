@@ -51,12 +51,21 @@ var Lottery = (function () {
   var stop = function () {
     clearInterval(timer);
     timer = null;
+    // 设置中奖人位置 中奖人头像变大 名字变大
+    setWiner()
     $content.css("left", 0)
-  };
+  }
+  var setWiner = function () {
+    $('.content ul li').eq(2).css({'-webkit-transform': 'scale(1.3)'})
+    $('.content ul li').eq(2).css({'margin-top': '76px'})
+    $('.content .yellow').css({'top': '53px'})
+    $('.content ul li').eq(2).find('img').css({'width': '180px','height': '180px'})
+    $('.content ul li').eq(2).find('p').css({'font-weight': 'bold','font-size': '24px'})
+    $('.content .yellow .div').css({'width': '222px','height': '222px','border-radius': '222px'})
+  }
   var changeImg = function () {
     console.log('图片已经换完，可以进行下一波更换！')
     onceChange = 1
-
   }
   return {
     init: init,
