@@ -52,6 +52,7 @@
     }
 
     .content .yellow .div {
+      display: none;
       width: 150px;
       height: 150px;
       border: 6px solid yellow;
@@ -110,6 +111,168 @@
       background: url('./images/btn_nor_stop.png') no-repeat;
       background-size: 100% 100%;
     }
+
+    .animated {
+      -webkit-animation-duration: 1s;
+      animation-duration: 1s;
+      -webkit-animation-fill-mode: both;
+      animation-fill-mode: both;
+    }
+
+    @-webkit-keyframes wobble {
+      from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+
+      15% {
+        -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+        transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+      }
+
+      30% {
+        -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+        transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+      }
+
+      45% {
+        -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+        transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+      }
+
+      60% {
+        -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+        transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+      }
+
+      75% {
+        -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+        transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+      }
+
+      to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    @keyframes wobble {
+      from {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+
+      15% {
+        -webkit-transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+        transform: translate3d(-25%, 0, 0) rotate3d(0, 0, 1, -5deg);
+      }
+
+      30% {
+        -webkit-transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+        transform: translate3d(20%, 0, 0) rotate3d(0, 0, 1, 3deg);
+      }
+
+      45% {
+        -webkit-transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+        transform: translate3d(-15%, 0, 0) rotate3d(0, 0, 1, -3deg);
+      }
+
+      60% {
+        -webkit-transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+        transform: translate3d(10%, 0, 0) rotate3d(0, 0, 1, 2deg);
+      }
+
+      75% {
+        -webkit-transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+        transform: translate3d(-5%, 0, 0) rotate3d(0, 0, 1, -1deg);
+      }
+
+      to {
+        -webkit-transform: translate3d(0, 0, 0);
+        transform: translate3d(0, 0, 0);
+      }
+    }
+
+    .wobble {
+      -webkit-animation-name: wobble;
+      animation-name: wobble;
+    }
+
+    @-webkit-keyframes tada {
+      from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+      }
+
+      10%,
+      20% {
+        -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+      }
+
+      30%,
+      50%,
+      70%,
+      90% {
+        -webkit-transform: scale3d(1.3, 1.3, 1.3) rotate3d(0, 0, 1, 3deg);
+        transform: scale3d(1.3, 1.3, 1.3) rotate3d(0, 0, 1, 3deg);
+      }
+
+      40%,
+      60%,
+      80% {
+        -webkit-transform: scale3d(1.3, 1.3, 1.3) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(1.3, 1.3, 1.3) rotate3d(0, 0, 1, -3deg);
+      }
+
+      to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+      }
+    }
+
+    @keyframes tada {
+      from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+      }
+
+      10%,
+      20% {
+        -webkit-transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(0.9, 0.9, 0.9) rotate3d(0, 0, 1, -3deg);
+      }
+
+      30%,
+      50%,
+      70%,
+      90% {
+        -webkit-transform: scale3d(1.3, 1.3, 1.3) rotate3d(0, 0, 1, 3deg);
+        transform: scale3d(1.3, 1.3, 1.3) rotate3d(0, 0, 1, 3deg);
+      }
+
+      40%,
+      60%,
+      80% {
+        -webkit-transform: scale3d(1.3, 1.3, 1.3) rotate3d(0, 0, 1, -3deg);
+        transform: scale3d(1.3, 1.3, 1.3) rotate3d(0, 0, 1, -3deg);
+      }
+
+      to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+      }
+    }
+
+    .tada {
+      -webkit-animation-name: tada;
+      animation-name: tada;
+    }
+
+    .animated.infinite {
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+    }
   </style>
 </head>
 
@@ -121,25 +284,25 @@
           <div class="div"></div>
         </div>
         <ul>
-          <li class="">
+          <li class="animated tada infinite">
             <img src="./images/bg_pic.png" alt="">
-            <p>name</p>
+            <p>111</p>
           </li>
-          <li class="">
+          <li class="animated tada infinite">
             <img src="./images/bg_pic.png" alt="">
-            <p>名字名字sa</p>
+            <p>2</p>
           </li>
-          <li class="">
+          <li class="animated tada infinite">
             <img src="./images/bg_pic.png" alt="">
-            <p>name</p>
+            <p>3</p>
           </li>
-          <li class="">
+          <li class="animated tada infinite">
             <img src="./images/bg_pic.png" alt="">
-            <p>名字名字sa名字名字sa名字名字sa</p>
+            <p>4</p>
           </li>
-          <li class="">
+          <li class="animated tada infinite">
             <img src="./images/bg_pic.png" alt="">
-            <p>name</p>
+            <p>5</p>
           </li>
         </ul>
         <button class="beginBtn"></button>
@@ -152,20 +315,11 @@
   <script>
     $('.beginBtn').click(function () {
       Lottery.start()
-      $(this).hide()
-      $('.stopBtn').show().css({
-        display: 'block'
-      })
     })
 
     $('.stopBtn').click(function () {
       Lottery.stop()
     })
-    
-    //   setTimeout(function () {
-    //     // location.href='result.html'; 
-    //   },1000)
-    // })
   </script>
 </body>
 
