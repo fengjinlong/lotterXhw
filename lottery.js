@@ -154,12 +154,12 @@ var Lottery = (function () {
     setCurIdx(selected);
   }
   var setWiner = function (n) {
-    $('.content ul li').eq(n).css({'-webkit-transform': 'scale(1.3)'})
-    $('.content ul li').eq(n).css({'margin-top': '76px'})
-    $('.content .yellow').css({'top': '53px'})
-    $('.content ul li').eq(n).find('img').css({'width': '180px','height': '180px'})
+    $('.content ul li').eq(n).css({'-webkit-transform': 'scale(1.2)'})
+    $('.content ul li').eq(n).css({'margin-top': '22px'})
+    $('.content .yellow').css({'top': '17px'})
+    $('.content ul li').eq(n).find('img').css({'width': '190px','height': '190px'})
     $('.content ul li').eq(n).find('p').css({'font-weight': 'bold','font-size': '24px'})
-    $('.content .yellow .div').css({'width': '222px','height': '222px','border-radius': '222px'}).show()
+    $('.content .yellow .div').css({'width': '200px','height': '200px','border-radius': '200px'}).show()
     $('.content ul li').eq(n).addClass('animated wobble')
   }
   var changeImg = function () {
