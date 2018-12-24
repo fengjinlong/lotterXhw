@@ -107,6 +107,7 @@ var Lottery = (function () {
     // 初始添加名字和头像
     noBeginTimer = setInterval(function () {
       shuffle(allPeople)
+      shuffle(allPeople)
       // 需要具体配置
       $('ul li').each(function (i,ele) {
         $(this).find('p').text(allPeople[i])
@@ -168,14 +169,13 @@ var Lottery = (function () {
   var changeImg = function () {
     console.log('数据已经换完，可以进行下一波更换！')
     if (shuffle(allPeople)) {
+      shuffle(allPeople)
       if (allPeople.length < 10) {
         allPeople = COPYALLPEOPLE.slice()
         shuffle(allPeople)
       }
       // 取出洗牌数组的前十
       currentTenArr = allPeople.splice(0,10)
-      // var currentTenArr = allPeople.splice(0,10)
-      // console.log(currentTenArr)
       // 添加名字和头像
       $('ul li').each(function (i,ele) {
         // 需要具体配置
@@ -188,10 +188,10 @@ var Lottery = (function () {
   // 洗牌
   var shuffle = function(arr) {
     var len = arr.length
-    console.log('length='+len)
     var temp
     var random_index
     while(len != 0) {
+      console.log(1)
       random_index = parseInt(Math.random()*len);
       temp = arr[random_index];
       arr[random_index] = arr[len-1];
