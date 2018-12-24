@@ -1,4 +1,8 @@
 var Lottery = (function () {
+  // 设置中奖人数
+  var setWinerNum = 1
+  // 当前获奖的人数组
+  var currentTenArr = []
   var allPeople = []
   // 当洗牌后数组为[]，需要重新开始一轮，且不能改变COPYALLPEOPLE
   var COPYALLPEOPLE = []
@@ -13,7 +17,7 @@ var Lottery = (function () {
   // 在这个范围内加载图片
   var addPic = 0
   // 一个li分多少次移动完
-  var ADDLEFT = 15
+  var ADDLEFT = 10
   // 设置li宽度
   $('.content ul li').width(itemWidth)
   $('.yellow').width($(document).width())
@@ -118,6 +122,24 @@ var Lottery = (function () {
       clearInterval(timerOther) 
       $('.beginBtn').hide()
       $('.stopBtn').show().css({display: 'block'})
+
+      clearInterval(timer);
+      timer = setInterval(function () {
+        curPos = parseInt($content.css("left")) | 0;
+        curPos -= itemWidth / ADDLEFT;
+        addPic = itemWidth / ADDLEFT + itemWidth / ADDLEFT / 2
+        if (curPos > -addPic && curPos < 0) {
+          console.log('数据未换完，不能继续换图片，等待。。。。。。。。。。')
+          if (onceChange) {
+            onceChange = 0
+            changeImg()
+          }
+        }
+        (curPos < 0 - itemWidth * itemCount) && (curPos = 0);
+        $content.css({
+          "left": curPos
+        });
+      }, 10);
     } else {
       clearInterval(timerOther) 
         timerOther = setTimeout(function () {
@@ -126,40 +148,22 @@ var Lottery = (function () {
           timerOther = null
       }, 2000)
     }
-    clearInterval(timer);
-    timer = setInterval(function () {
-      curPos = parseInt($content.css("left")) | 0;
-      curPos -= itemWidth / ADDLEFT;
-      addPic = itemWidth / ADDLEFT + itemWidth / ADDLEFT / 2
-      if (curPos > -addPic && curPos < 0) {
-        console.log('数据未换完，不能继续换图片，等待。。。。。。。。。。')
-        if (onceChange) {
-          onceChange = 0
-          changeImg()
-        }
-      }
-      (curPos < 0 - itemWidth * itemCount) && (curPos = 0);
-      $content.css({
-        "left": curPos
-      });
-    }, 10);
+    
   };
 
   var stop = function () {
     clearInterval(timer);
     timer = null;
-    (curPos % itemWidth == 0 - itemWidth / 2) && (curPos = curPos - itemWidth / 2);
-    var selected  = getCurIdx();
-    setCurIdx(selected);
+    console.log(currentTenArr)
+    shuffle(currentTenArr)
+    $('.content ul').css({'left': '0px'})
+    sendWiner(currentTenArr.splice(0,setWinerNum))
+ 
   }
-  var setWiner = function (n) {
-    $('.content ul li').eq(n).css({'-webkit-transform': 'scale(1.2)'})
-    $('.content ul li').eq(n).css({'margin-top': '22px'})
-    $('.content .yellow').css({'top': '17px'})
-    $('.content ul li').eq(n).find('img').css({'width': '190px','height': '190px'})
-    $('.content ul li').eq(n).find('p').css({'font-weight': 'bold','font-size': '24px'})
-    $('.content .yellow .div').css({'width': '200px','height': '200px','border-radius': '200px'}).show()
-    $('.content ul li').eq(n).addClass('animated wobble')
+  var sendWiner = function (arr) {
+    console.log(arr)
+    // 存本地
+    window.location.href = './result.html'
   }
   var changeImg = function () {
     console.log('数据已经换完，可以进行下一波更换！')
@@ -169,7 +173,8 @@ var Lottery = (function () {
         shuffle(allPeople)
       }
       // 取出洗牌数组的前十
-      var currentTenArr = allPeople.splice(0,10)
+      currentTenArr = allPeople.splice(0,10)
+      // var currentTenArr = allPeople.splice(0,10)
       // console.log(currentTenArr)
       // 添加名字和头像
       $('ul li').each(function (i,ele) {
@@ -179,19 +184,7 @@ var Lottery = (function () {
       onceChange = 1
     }
   }
-  var setCurIdx = function(idx) {
-    curPos = (0 - idx) * itemWidth;
-    // 设置中奖的left
-    $content.animate({"left": curPos},800)
-    // 设置中奖人位置 中奖人头像变大 名字变大
-    // 第(idx + 3)个人中奖
-    setWiner(idx + 2)
 
-  };
-
-  var getCurIdx = function() {
-    return(Math.round((0 - curPos) / itemWidth))
-  };
   // 洗牌
   var shuffle = function(arr) {
     var len = arr.length
@@ -207,14 +200,10 @@ var Lottery = (function () {
     }
     return true
   };
-  
-
   return {
     init: init,
     start: start,
-    stop: stop,
-    setCurIdx: setCurIdx,
-    getCurIdx: getCurIdx
+    stop: stop
   };
 
 })();
