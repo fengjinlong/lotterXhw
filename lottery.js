@@ -102,7 +102,6 @@ var Lottery = (function () {
     // 获取成功后初始赋值前十个人
     // 初始添加名字和头像
     noBeginTimer = setInterval(function () {
-      console.log('llllllllll')
       shuffle(allPeople)
       // 需要具体配置
       $('ul li').each(function (i,ele) {
