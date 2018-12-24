@@ -17,7 +17,8 @@ var Lottery = (function () {
   // 在这个范围内加载图片
   var addPic = 0
   // 一个li分多少次移动完
-  var ADDLEFT = 10
+  var ADDLEFT = 20
+  var trans = 0
   // 设置li宽度
   $('.content ul li').width(itemWidth)
   $('.yellow').width($(document).width())
@@ -136,11 +137,15 @@ var Lottery = (function () {
             changeImg()
           }
         }
-        (curPos < 0 - itemWidth * itemCount) && (curPos = 0);
+        (curPos < 0 - itemWidth * itemCount) && (curPos = 0)
+        console.log(curPos)
+        trans += 8
+        trans = trans > 1440 ? 0 : trans
         $content.css({
-          "left": curPos
+          // "left": curPos
+          "transform": "translate3d("+ (-trans)+"px, 0px, 0px)",
         });
-      }, 10);
+      }, 1);
     } else {
       clearInterval(timerOther) 
         timerOther = setTimeout(function () {
@@ -155,16 +160,14 @@ var Lottery = (function () {
   var stop = function () {
     clearInterval(timer);
     timer = null;
-    console.log(currentTenArr)
     shuffle(currentTenArr)
     $('.content ul').css({'left': '0px'})
     sendWiner(currentTenArr.splice(0,setWinerNum))
  
   }
   var sendWiner = function (arr) {
-    console.log(arr)
     // 存本地
-    window.location.href = './result.html'
+    // window.location.href = './result.html'
   }
   var changeImg = function () {
     console.log('数据已经换完，可以进行下一波更换！')
@@ -191,7 +194,6 @@ var Lottery = (function () {
     var temp
     var random_index
     while(len != 0) {
-      console.log(1)
       random_index = parseInt(Math.random()*len);
       temp = arr[random_index];
       arr[random_index] = arr[len-1];
